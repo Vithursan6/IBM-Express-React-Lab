@@ -12,6 +12,26 @@ app.get("/", (req, res) => {
     res.send("Welcome to the express server");
 });
 
+// Route to fetch month
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+app.get("/fetchMonth/:num", (req, res) => {
+     // Parse the number from the request parameters
+     let num = parseInt(req.params.num);
+
+     // Check if the number is a valid month number
+     if (num < 1 || num > 12) {
+
+        // Send error message if the number is not valid
+        res.send("Not a valid month number");
+     } else {
+
+        // Send the corresponding month name if the number is valid
+        res.send(months[num - 1]);
+     }
+    
+});
+
 // Define a route to send login details as a JSON string
 app.get("/loginDetails", (req, res) => {
     res.send(JSON.stringify(loginDetails));
